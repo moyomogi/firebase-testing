@@ -89,6 +89,7 @@ function isUserSignedIn() {
 async function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
   try {
+    // "messages" というのが、全てを統べる名称となっています。
     await addDoc(collection(getFirestore(), 'messages'), {
       name: getUserName(),
       text: messageText,
@@ -420,7 +421,9 @@ imageButtonElement.addEventListener('click', function (e) {
 });
 mediaCaptureElement.addEventListener('change', onMediaFileSelected);
 
-const firebaseApp = initializeApp(getFirebaseConfig());
+// 冗長
+// const firebaseApp = initializeApp(getFirebaseConfig());
+initializeApp(getFirebaseConfig());
 getPerformance();
 initFirebaseAuth();
 loadMessages();
